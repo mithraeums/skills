@@ -1,138 +1,111 @@
-# CORP
-**A company in a folder. Lightweight multi-agent org structure for AI coding assistants.**
+<p align="center">
+  <a href="https://mithraeums.github.io">
+    <img src="https://mithraeums.github.io/assets/banner-skills-dark.svg" alt="skills — behaviors for claw and hako, by name" width="100%"/>
+  </a>
+</p>
 
-Drop a `.claude/` folder into any repo and give your AI a CEO, a dev lead, a designer, a QA engineer, and a systems architect — all in markdown. No frameworks, no orchestration layer, no dependencies. Just files.
+<p align="center">
+  <em>Markdown behaviors for hakoCLAW and hako. Drop a folder, name it, and the agent loads it.</em>
+</p>
 
-Compatible with **Claude Code · Codex CLI · Cursor · Gemini CLI · OpenCode · Windsurf** and any tool that reads the Agent Skills standard.
+<p align="center">
+  <img src="https://img.shields.io/badge/version-pre--1.0-b89656?style=flat-square&labelColor=14130f" alt="pre-1.0"/>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-c8c2b2?style=flat-square&labelColor=14130f" alt="GPL-3.0"/>
+  <img src="https://img.shields.io/badge/format-markdown-c8c2b2?style=flat-square&labelColor=14130f" alt="markdown"/>
+  <img src="https://img.shields.io/badge/runtime-none-c8c2b2?style=flat-square&labelColor=14130f" alt="no runtime"/>
+</p>
 
----
+<p align="center">
+  <sub><a href="https://mithraeums.github.io/#skills">site catalog</a> &nbsp;·&nbsp; <a href="#format">SKILL.md spec</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hakoCLAW">hakoCLAW</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako">hako</a></sub>
+</p>
 
-## What It Is
-Most agent skills teach Claude *how* to do a task. Corp teaches Claude *who to ask*.
+<br>
 
-Each agent is a markdown file with a defined role, domain knowledge, and a handoff protocol. The dispatcher (`CLAUDE.md`) routes tasks to the right agent. Agents call each other when work crosses domains. Nothing is loaded that isn't needed.
+<p align="center"><sub><b>—— I ——</b></sub></p>
 
-```
-.claude/
-├── CLAUDE.md            ← dispatcher, always read first
-└── agents/
-    ├── CEO.md           ← scope, priorities, what not to build
-    ├── DEV.md           ← code, backend, database
-    ├── DESIGN.md        ← UI, components, CSS, interactions
-    ├── QA.md            ← quality gate, ship/no-ship
-    └── ARCH.md          ← schema, API contracts, system boundaries
-```
+## Catalog
 
----
+<table>
+  <tr>
+    <td width="60" align="center"><sub>— 01 —</sub></td>
+    <td><b><a href="corp/">corp</a></b><br/><sub>A company in a folder. CEO · DEV · DESIGN · QA · ARCH. Routes tasks by domain. Markdown only, no runtime.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 02 —</sub></td>
+    <td><b><em>your skill here</em></b><br/><sub>Open a PR. Folder name becomes the invocation.</sub></td>
+  </tr>
+</table>
 
-## Install
+<p align="center"><sub><b>—— II ——</b></sub></p>
 
-**As a Claude Code plugin** (enables `/corp` slash commands — recommended):
-```bash
-claude plugin install github:zblauser/CORP
-```
+## Install into claw
 
-**Manual** (agents only, works in any AI tool that reads markdown):
-```bash
-git clone https://github.com/zblauser/CORP .corp-tmp
-cp -r .corp-tmp/.claude ./
-rm -rf .corp-tmp
-```
-
----
-
-## Slash Commands
-
-Once installed as a plugin, these commands are available in Claude Code:
-
-| Command | What it does |
-|---|---|
-| `/corp` | Quick-reference: agent map, dispatch protocol, setup status |
-| `/corp:init` | Interactive setup wizard — fills in `[PROJECT]` and `ARCH.md` by asking questions |
-| `/corp:add-agent` | Scaffolds a new specialist agent and wires it into the org |
-
-Start with `/corp:init` on a new repo. Takes about 2 minutes.
-
----
-
-## Setup (manual)
-If not using the plugin, fill in two files:
-
-**1. `[PROJECT]` block in `.claude/CLAUDE.md`**
-```
-Name: your-project
-Stack: language · framework · database · frontend
-Structure: /src · /api · /components
-Entry: main entrypoints
-Conventions: tabs/spaces, naming style, test framework
+```sh
+git clone https://github.com/mithraeums/skills /tmp/skills_tmp
+cp -r /tmp/skills_tmp/<skill> ~/.hakoc/skills/
+rm -rf /tmp/skills_tmp
+hakoc                  # "loaded 1 skill(s)"
 ```
 
-**2. Entity/contract section in `.claude/agents/ARCH.md`**
-Sketch your data model and API shapes. Keep it under 40 lines.
+claw loads any folder containing a `SKILL.md` at startup. Inner files are pulled on demand via the `read_skill(skill, path)` tool.
 
-Everything else works as-is.
+## Install into hako
 
-Full guide: [CONTRIBUTING.md](.claude/CONTRIBUTING.md)
-
----
-
-## How It Works
-```
-Task arrives
-  → Claude reads CLAUDE.md
-  → Identifies domain
-  → Reads relevant agent
-  → Agent may call another agent
-  → Implements
-  → QA.md checklist
-  → Ships
+```sh
+cp -r <skill> ~/.hako/skills/
 ```
 
-Agents are **referential, not prescriptive** — they tell Claude what it knows and who to consult, not what to do step by step. This keeps token usage low and lets the model reason rather than follow a script.
+Hako loads `~/.hako/skills/*.md` and `~/.hako/skills/*/SKILL.md` into the Rei panel's system prompt at launch.
 
-Each agent tags its output: `[CEO]` `[DEV]` `[DESIGN]` `[QA]` `[ARCH]` so you always know who's talking.
+<p align="center"><sub><b>—— III ——</b></sub></p>
 
+## Format
+
+Every skill is a folder:
+
+```
+<skill-name>/
+├── SKILL.md          dispatcher: frontmatter + intro + agent map
+└── (any *.md, agents/, helpers, assets)
+```
+
+`SKILL.md` frontmatter:
+
+```yaml
 ---
-
-## Design Principles
-**Token-first.** Every line earns its place. Agents load on demand, not upfront. The whole org is under 500 lines.
-
-**Referential over prescriptive.** Agents know what they know. They don't script every step — they orient the model and hand off.
-
-**Generic core, project-specific edges.** Only the `[PROJECT]` block in `CLAUDE.md` and the entity section in `ARCH.md` change per repo. Everything else ports as-is.
-
-**Output-tagged.** Every agent response carries its tag. You always know who's talking.
-
+name: <skill-name>
+description: >
+  One-paragraph summary. When to load. What it solves.
+  Include trigger phrases.
 ---
+```
 
-## Adding Agents
-When a domain grows large enough (auth, infra, ML, payments, data pipeline):
+Inside `SKILL.md`: keep it dispatcher-shaped — orient the model, list which inner files exist, hand off. Under 50 lines is the goal. If a skill needs more, split it into agents.
 
-Use `/corp:add-agent` or do it manually:
-1. Copy the structure: `ROLE · KNOWS · CALLS · OUTPUT FORMAT`
-2. Add it to the Agent Map table in `CLAUDE.md`
-3. Reference it from relevant existing agents' `CALLS` sections
-4. Keep it under 50 lines — if longer, split it
-
----
+<p align="center"><sub><b>—— IV ——</b></sub></p>
 
 ## Compatibility
+
 | Tool | Path | Status |
 |---|---|---|
-| Claude Code | `.claude/agents/` | ✅ native + plugin |
-| Codex CLI | `codex.md` + agents | ✅ compatible |
-| Cursor | `.cursor/rules/` | ✅ copy agents there |
-| Gemini CLI | `GEMINI.md` + agents | ✅ compatible |
-| OpenCode | `.agents/` | ✅ compatible |
-| Any AGENTS.md tool | root `AGENTS.md` | ✅ copy dispatcher |
+| **hakoCLAW** | `~/.hakoc/skills/` | native, `read_skill` tool |
+| **hako** (Rei panel) | `~/.hako/skills/` | native, system-prompt inject |
+| **Claude Code** | `.claude/skills/` | drop-in |
+| Codex CLI · Cursor · Gemini CLI · OpenCode · Windsurf | varies | markdown is markdown |
 
----
+<p align="center"><sub><b>—— V ——</b></sub></p>
 
-## Inspired By
-- Caveman Claude compression principles
-- Karpathy's LLM idea file patterns
-- The Agent Skills open standard
+## Contribute
 
----
+```sh
+git clone https://github.com/mithraeums/skills
+git checkout -b add/your-skill
+# add your-skill/SKILL.md (+ any agents/helpers)
+git push origin add/your-skill
+# open PR
+```
 
-*corp is a skill, not a framework. It has no runtime, no install step, no version to update. It's just files that know how to work together.*
+Keep skills **referential**, not prescriptive. Token budget first. The dispatcher orients — the model reasons.
+
+<p align="center"><sub><em>— deus sol invictus mithras —</em></sub></p>
+
