@@ -1,11 +1,11 @@
 <p align="center">
   <a href="https://mithraeums.github.io">
-    <img src="https://mithraeums.github.io/assets/banner-skills-dark.svg" alt="skills — behaviors for claw and hako, by name" width="100%"/>
+    <img src="https://mithraeums.github.io/assets/banner-skills-dark.svg" alt="skills — behaviors for the hako suite, by name" width="100%"/>
   </a>
 </p>
 
 <p align="center">
-  <em>Markdown behaviors for hakoCLAW and hako. Drop a folder, name it, and the agent loads it.</em>
+  <em>Markdown behaviors for hako-code and hake. Drop a folder, name it, the agent loads it.</em>
 </p>
 
 <p align="center">
@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <sub><a href="https://mithraeums.github.io/#skills">site catalog</a> &nbsp;·&nbsp; <a href="#format">SKILL.md spec</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hakoCLAW">hakoCLAW</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako">hako</a></sub>
+  <sub><a href="https://mithraeums.github.io/#skills">site catalog</a> &nbsp;·&nbsp; <a href="#format">SKILL.md spec</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-code">hako-code</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-edit">hako-edit</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums">org</a></sub>
 </p>
 
 <br>
@@ -38,24 +38,18 @@
 
 <p align="center"><sub><b>—— II ——</b></sub></p>
 
-## Install into claw
+## Install
+
+Both `hako` (the agent) and `hake` (the editor's Rei pane) read skills from `~/.hako/skills/`.
 
 ```sh
 git clone https://github.com/mithraeums/skills /tmp/skills_tmp
-cp -r /tmp/skills_tmp/<skill> ~/.hakoc/skills/
+cp -r /tmp/skills_tmp/<skill> ~/.hako/skills/
 rm -rf /tmp/skills_tmp
-hakoc                  # "loaded 1 skill(s)"
+hako                  # "loaded 1 skill(s)"
 ```
 
-claw loads any folder containing a `SKILL.md` at startup. Inner files are pulled on demand via the `read_skill(skill, path)` tool.
-
-## Install into hako
-
-```sh
-cp -r <skill> ~/.hako/skills/
-```
-
-Hako loads `~/.hako/skills/*.md` and `~/.hako/skills/*/SKILL.md` into the Rei panel's system prompt at launch.
+Or from inside a session: `:skill install <url>`. The agent loads any folder containing a `SKILL.md` at startup; inner files are pulled on demand via the `read_skill(skill, path)` tool.
 
 <p align="center"><sub><b>—— III ——</b></sub></p>
 
@@ -88,8 +82,8 @@ Inside `SKILL.md`: keep it dispatcher-shaped — orient the model, list which in
 
 | Tool | Path | Status |
 |---|---|---|
-| **hakoCLAW** | `~/.hakoc/skills/` | native, `read_skill` tool |
-| **hako** (Rei panel) | `~/.hako/skills/` | native, system-prompt inject |
+| **hako-code** (`hako`) | `~/.hako/skills/` | native, `read_skill` tool |
+| **hake** (Rei pane) | `~/.hako/skills/` | native, system-prompt inject |
 | **Claude Code** | `.claude/skills/` | drop-in |
 | Codex CLI · Cursor · Gemini CLI · OpenCode · Windsurf | varies | markdown is markdown |
 
@@ -108,4 +102,3 @@ git push origin add/your-skill
 Keep skills **referential**, not prescriptive. Token budget first. The dispatcher orients — the model reasons.
 
 <p align="center"><sub><em>— deus sol invictus mithras —</em></sub></p>
-
