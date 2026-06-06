@@ -1,7 +1,10 @@
 {
   "name": "corp",
-  "version": "0.1.0",
-  "description": "CORP-md: markdown-based multi-agent orchestration system",
+  "version": "0.2.0",
+  "description": "corp — a company in a folder: host-agnostic markdown multi-agent org (CEO/DEV/DESIGN/QA/ARCH)",
+  "author": "mithraeum",
+  "homepage": "https://github.com/mithraeums/skills",
+  "license": "GPL-3.0",
   "skills": [
     "./skills",
     "./agents"

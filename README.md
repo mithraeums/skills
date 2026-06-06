@@ -25,13 +25,39 @@
 
 ## Catalog
 
+Pull only what you want — each is a self-contained folder, pure markdown, **works in any agent or LLM**.
+
 <table>
   <tr>
     <td width="60" align="center"><sub>— 01 —</sub></td>
-    <td><b><a href="corp/">corp</a></b><br/><sub>A company in a folder. CEO · DEV · DESIGN · QA · ARCH. Routes tasks by domain. Markdown only, no runtime.</sub></td>
+    <td><b><a href="corp/">corp</a></b><br/><sub>A company in a folder. CEO · DEV · DESIGN · QA · ARCH — routes tasks by domain. Ships as <code>CLAUDE.md</code> + <code>AGENTS.md</code>, molds to its host.</sub></td>
   </tr>
   <tr>
     <td width="60" align="center"><sub>— 02 —</sub></td>
+    <td><b><a href="brief/">brief</a></b><br/><sub>Token-lean output. Cut ~50–75% of length, keep every fact. Drops filler, not information.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 03 —</sub></td>
+    <td><b><a href="memory/">memory</a></b><br/><sub>Durable cross-session memory: a <code>MEMORY.md</code> index + one-fact-per-file, with recall &amp; dedupe rules. No database.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 04 —</sub></td>
+    <td><b><a href="sync/">sync</a></b><br/><sub>Change once, update everywhere — docs, version strings, sibling repos, JSON. Kills the "did I get them all?" miss.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 05 —</sub></td>
+    <td><b><a href="scope/">scope</a></b><br/><sub>Vague ask → goal + explicit non-goals + smallest viable step, before building. Stops scope creep.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 06 —</sub></td>
+    <td><b><a href="release/">release</a></b><br/><sub>Bump version consistently, write the changelog, generate a multi-repo push-order checklist.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 07 —</sub></td>
+    <td><b><a href="handoff/">handoff</a></b><br/><sub>Write a START-HERE state doc (done / next / gotchas) so the next session resumes in seconds.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— ·· —</sub></td>
     <td><b><em>your skill here</em></b><br/><sub>Open a PR. Folder name becomes the invocation.</sub></td>
   </tr>
 </table>

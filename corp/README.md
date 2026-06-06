@@ -1,20 +1,21 @@
 # CORP
 **A company in a folder. Lightweight multi-agent org structure for AI coding assistants.**
 
-Drop a `.claude/` folder into any repo and give your AI a CEO, a dev lead, a designer, a QA engineer, and a systems architect — all in markdown. No frameworks, no orchestration layer, no dependencies. Just files.
+Drop a `corp/` folder into any repo and give your assistant a CEO, a dev lead, a designer, a QA engineer, and a systems architect — all in markdown. No frameworks, no orchestration layer, no dependencies. Just files any LLM can read.
 
-Compatible with **Claude Code · Codex CLI · Cursor · Gemini CLI · OpenCode · Windsurf** and any tool that reads the Agent Skills standard.
+**Host-agnostic.** The dispatcher ships as both `CLAUDE.md` and `AGENTS.md`, so it auto-loads in **Claude Code · Codex CLI · Cursor · Gemini CLI · Aider · hako** and any tool that reads the Agent Skills / AGENTS.md standard. It molds to its host — use your native tools, ignore frontmatter your host doesn't grok.
 
 ---
 
 ## What It Is
-Most agent skills teach Claude *how* to do a task. Corp teaches Claude *who to ask*.
+Most skills teach your assistant *how* to do a task. Corp teaches it *who to ask*.
 
-Each agent is a markdown file with a defined role, domain knowledge, and a handoff protocol. The dispatcher (`CLAUDE.md`) routes tasks to the right agent. Agents call each other when work crosses domains. Nothing is loaded that isn't needed.
+Each agent is a markdown file with a defined role, domain knowledge, and a handoff protocol. The dispatcher routes tasks to the right agent. Agents call each other when work crosses domains. Nothing is loaded that isn't needed.
 
 ```
-.claude/
-├── CLAUDE.md            ← dispatcher, always read first
+corp/
+├── CLAUDE.md            ← dispatcher (Claude hosts), always read first
+├── AGENTS.md            ← same dispatcher (Codex/Cursor/Gemini/… hosts)
 └── agents/
     ├── CEO.md           ← scope, priorities, what not to build
     ├── DEV.md           ← code, backend, database
@@ -27,16 +28,19 @@ Each agent is a markdown file with a defined role, domain knowledge, and a hando
 
 ## Install
 
-**As a Claude Code plugin** (enables `/corp` slash commands — recommended):
+**Any agent (universal):** copy the `corp/` folder into your repo, then add one line to your assistant's entry file (`CLAUDE.md` / `AGENTS.md` / system prompt):
+> For multi-domain tasks, read `corp/CLAUDE.md` (or `AGENTS.md`) first.
+
+**As a Claude Code plugin** (enables `/corp` slash commands):
 ```bash
-claude plugin install github:zblauser/CORP
+claude plugin install github:mithraeums/skills
 ```
 
-**Manual** (agents only, works in any AI tool that reads markdown):
+**Manual clone:**
 ```bash
-git clone https://github.com/zblauser/CORP .corp-tmp
-cp -r .corp-tmp/.claude ./
-rm -rf .corp-tmp
+git clone https://github.com/mithraeums/skills .skills-tmp
+cp -r .skills-tmp/corp ./corp
+rm -rf .skills-tmp
 ```
 
 ---
@@ -58,7 +62,7 @@ Start with `/corp:init` on a new repo. Takes about 2 minutes.
 ## Setup (manual)
 If not using the plugin, fill in two files:
 
-**1. `[PROJECT]` block in `.claude/CLAUDE.md`**
+**1. `[PROJECT]` block in the dispatcher (`CLAUDE.md` / `AGENTS.md`)**
 ```
 Name: your-project
 Stack: language · framework · database · frontend
@@ -67,19 +71,19 @@ Entry: main entrypoints
 Conventions: tabs/spaces, naming style, test framework
 ```
 
-**2. Entity/contract section in `.claude/agents/ARCH.md`**
+**2. Entity/contract section in `agents/ARCH.md`**
 Sketch your data model and API shapes. Keep it under 40 lines.
 
 Everything else works as-is.
 
-Full guide: [CONTRIBUTING.md](.claude/CONTRIBUTING.md)
+Full guide: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
 ## How It Works
 ```
 Task arrives
-  → Claude reads CLAUDE.md
+  → your assistant reads the dispatcher (CLAUDE.md / AGENTS.md)
   → Identifies domain
   → Reads relevant agent
   → Agent may call another agent
@@ -88,7 +92,7 @@ Task arrives
   → Ships
 ```
 
-Agents are **referential, not prescriptive** — they tell Claude what it knows and who to consult, not what to do step by step. This keeps token usage low and lets the model reason rather than follow a script.
+Agents are **referential, not prescriptive** — they tell your assistant what it knows and who to consult, not what to do step by step. This keeps token usage low and lets the model reason rather than follow a script.
 
 Each agent tags its output: `[CEO]` `[DEV]` `[DESIGN]` `[QA]` `[ARCH]` so you always know who's talking.
 

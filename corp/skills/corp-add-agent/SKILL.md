@@ -19,7 +19,7 @@ Ask the user (one message):
 > 2. **Knows** — what files, services, or systems does it have expertise over?
 > 3. **Calls** — which existing agents does it hand off to? (CEO / DEV / DESIGN / QA / ARCH)
 > 4. **Called by** — which existing agents should call this one?
-> 5. **Tools** — what Claude tools does it need? (Read, Write, Edit, Bash, Grep, Glob)
+> 5. **Tools** *(optional)* — if your host scopes tools per agent (e.g. Claude Code), which does it need? (read, write, edit, shell, search). Hosts that don't scope tools ignore this.
 
 Wait for response.
 
