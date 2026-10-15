@@ -1,22 +1,22 @@
 <p align="center">
   <a href="https://mithraeums.github.io">
-    <img src="https://mithraeums.github.io/assets/banner-skills-dark.svg" alt="skills — behaviors for the hako suite, by name" width="100%"/>
+    <img src="https://mithraeums.github.io/assets/banner-skills.png" alt="skills — behaviors for the hako suite, by name" width="100%"/>
   </a>
 </p>
 
 <p align="center">
-  <em>Markdown behaviors for hako-code and hake. Drop a folder, name it, the agent loads it.</em>
+  <em>Markdown behaviors for the hako suite — and any agent that reads <a href="https://agentskills.io">Agent Skills</a>. Drop a folder, name it, the agent loads it.</em>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-pre--1.0-b89656?style=flat-square&labelColor=14130f" alt="pre-1.0"/>
-  <img src="https://img.shields.io/badge/license-GPL--3.0-c8c2b2?style=flat-square&labelColor=14130f" alt="GPL-3.0"/>
-  <img src="https://img.shields.io/badge/format-markdown-c8c2b2?style=flat-square&labelColor=14130f" alt="markdown"/>
-  <img src="https://img.shields.io/badge/runtime-none-c8c2b2?style=flat-square&labelColor=14130f" alt="no runtime"/>
+  <img src="https://img.shields.io/badge/version-pre--1.0-e2402e?style=flat-square&labelColor=14130f" alt="pre-1.0"/>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-2636c4?style=flat-square&labelColor=14130f" alt="GPL-3.0"/>
+  <img src="https://img.shields.io/badge/format-markdown-2636c4?style=flat-square&labelColor=14130f" alt="markdown"/>
+  <img src="https://img.shields.io/badge/runtime-none-2636c4?style=flat-square&labelColor=14130f" alt="no runtime"/>
 </p>
 
 <p align="center">
-  <sub><a href="https://mithraeums.github.io/#skills">site catalog</a> &nbsp;·&nbsp; <a href="#format">SKILL.md spec</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-code">hako-code</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-edit">hako-edit</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums">org</a></sub>
+  <sub><a href="https://mithraeums.github.io/#skills">site catalog</a> &nbsp;·&nbsp; <a href="#format">SKILL.md spec</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-code">hako-code</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-edit">hako-edit</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums/hako-studio">hako-studio</a> &nbsp;·&nbsp; <a href="https://github.com/mithraeums">org</a></sub>
 </p>
 
 <br>
@@ -57,6 +57,14 @@ Pull only what you want — each is a self-contained folder, pure markdown, **wo
     <td><b><a href="handoff/">handoff</a></b><br/><sub>Write a START-HERE state doc (done / next / gotchas) so the next session resumes in seconds.</sub></td>
   </tr>
   <tr>
+    <td width="60" align="center"><sub>— 08 —</sub></td>
+    <td><b><a href="changelog/">changelog</a></b><br/><sub>Turn a diff or session log into one clean CHANGELOG entry, in the project's own voice. Single-repo; the focused half of <code>release</code>.</sub></td>
+  </tr>
+  <tr>
+    <td width="60" align="center"><sub>— 09 —</sub></td>
+    <td><b><a href="ship/">ship</a></b><br/><sub>The pre-push gate: build matrix · ASan/valgrind · version-drift · CHANGELOG sync · cruft · docs. Returns PASS or BLOCKED, never a vibe.</sub></td>
+  </tr>
+  <tr>
     <td width="60" align="center"><sub>— ·· —</sub></td>
     <td><b><em>your skill here</em></b><br/><sub>Open a PR. Folder name becomes the invocation.</sub></td>
   </tr>
@@ -66,16 +74,25 @@ Pull only what you want — each is a self-contained folder, pure markdown, **wo
 
 ## Install
 
-Both `hako` (the agent) and `hake` (the editor's Rei pane) read skills from `~/.hako/skills/`.
+From inside `hako` — the CLI, the editor's Rei pane, or hako studio:
 
-```sh
-git clone https://github.com/mithraeums/skills /tmp/skills_tmp
-cp -r /tmp/skills_tmp/<skill> ~/.hako/skills/
-rm -rf /tmp/skills_tmp
-hako                  # "loaded 1 skill(s)"
+```
+:skill install mithraeums/skills          # all of them, into ~/.hako/skills
+:skill install mithraeums/skills/brief    # just one
+:skills                                   # what is loaded
+:use brief                                # one skill as a standing mode, until :use none
 ```
 
-Or from inside a session: `:skill install <url>`. The agent loads any folder containing a `SKILL.md` at startup; inner files are pulled on demand via the `read_skill(skill, path)` tool.
+Or by hand — each skill is a folder, so copying it is installing it:
+
+```sh
+git clone --depth 1 https://github.com/mithraeums/skills /tmp/skills
+cp -r /tmp/skills/<skill> ~/.hako/skills/
+```
+
+hako looks in `./.hako/skills`, `./.claude/skills`, `~/.hako/skills` and `~/.claude/skills`,
+nearest first. Each skill costs one line of the prompt (its `description`) until the model
+needs it; the body and inner files are read on demand with the `read_skill(skill, path)` tool.
 
 <p align="center"><sub><b>—— III ——</b></sub></p>
 
@@ -108,8 +125,8 @@ Inside `SKILL.md`: keep it dispatcher-shaped — orient the model, list which in
 
 | Tool | Path | Status |
 |---|---|---|
-| **hako-code** (`hako`) | `~/.hako/skills/` | native, `read_skill` tool |
-| **hake** (Rei pane) | `~/.hako/skills/` | native, system-prompt inject |
+| **hako-code** (`hako`) | `~/.hako/skills/`, `.claude/skills/` | native — descriptions up front, `read_skill` for the rest |
+| **hake** (Rei pane) · **hako studio** | same as hako | they run hako, so they get the same skills |
 | **Claude Code** | `.claude/skills/` | drop-in |
 | Codex CLI · Cursor · Gemini CLI · OpenCode · Windsurf | varies | markdown is markdown |
 
@@ -126,5 +143,7 @@ git push origin add/your-skill
 ```
 
 Keep skills **referential**, not prescriptive. Token budget first. The dispatcher orients — the model reasons.
+
+<p align="center"><sub><a href="LICENSE">— SEE LICENSE —</a> &nbsp;·&nbsp; GPL-3.0 &nbsp;·&nbsp; <a href="CONTRIBUTING.md">CONTRIBUTING</a></sub></p>
 
 <p align="center"><sub><em>— deus sol invictus mithras —</em></sub></p>
