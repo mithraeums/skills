@@ -1,12 +1,11 @@
 {
   "name": "corp",
   "version": "0.2.0",
-  "description": "corp — a company in a folder: host-agnostic markdown multi-agent org (CEO/DEV/DESIGN/QA/ARCH)",
-  "author": "mithraeum",
+  "description": "a company in a folder: CEO, DEV, DESIGN, QA and ARCH agents that route work by domain",
+  "author": {
+    "name": "mithraeum",
+    "url": "https://github.com/mithraeums"
+  },
   "homepage": "https://github.com/mithraeums/skills",
-  "license": "GPL-3.0",
-  "skills": [
-    "./skills",
-    "./agents"
-  ]
+  "license": "GPL-3.0"
 }

@@ -2,7 +2,7 @@
 name: release
 description: >
   Cut a clean release: bump the version consistently everywhere, write the changelog
-  entry, and generate a push-order checklist — including multi-repo suites where order
+  entry, and generate a push-order checklist, including multi-repo suites where order
   matters. Use when the user says "ship it / cut a release / bump the version / push
   everything", or is juggling several repos. Host-agnostic.
   Trigger: /release, "cut a release", "bump version", "push order", "ship it", "tag".

@@ -1,7 +1,7 @@
 ---
 name: scope
 description: >
-  Turn a vague request into a scoped plan before building — explicit goal, explicit
+  Turn a vague request into a scoped plan before building: explicit goal, explicit
   non-goals, the smallest viable first step. Use at the start of any non-trivial task,
   when a request is ambiguous or could balloon, or when you catch yourself about to
   over-build. Stops scope creep and wasted work. Host-agnostic.

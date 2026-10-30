@@ -1,7 +1,7 @@
 ---
 name: sync
 description: >
-  Propagate one change to every place that references it — code, docs, version strings,
+  Propagate one change to every place that references it: code, docs, version strings,
   config, sibling repos, JSON/YAML data. Use after a rename, a version bump, an API or
   contract change, or any edit where "did I update everywhere?" is a real question.
   Turns the error-prone manual sweep into a deliberate pass. Host-agnostic.

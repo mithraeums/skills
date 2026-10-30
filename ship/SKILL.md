@@ -1,7 +1,7 @@
 ---
 name: ship
 description: >
-  The pre-push gate: run the checks that decide whether a tag is allowed to leave —
+  The pre-push gate: run the checks that decide whether a tag is allowed to leave:
   clean build on every target, ASan/valgrind, version bumped in *every* file, CHANGELOG
   synced, no debug cruft, docs match reality. Returns a pass/blocked verdict with the
   exact failures, never a vibe. Use before a release or when the user says "is this

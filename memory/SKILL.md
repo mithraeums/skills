@@ -4,7 +4,7 @@ description: >
   Persistent file-based memory for any agent. Keep durable facts across sessions in a
   MEMORY.md index + one-fact-per-file, with rules for what to save, how to recall, and
   how to avoid stale/duplicate memories. Use when the user shares a durable preference,
-  a project constraint, or says "remember this" / "from now on" — or at session start
+  a project constraint, or says "remember this" / "from now on", or at session start
   to recall. Host-agnostic; no database, just markdown.
   Trigger: /memory, "remember", "don't forget", "save this", "what do you know about".
 ---
@@ -56,6 +56,13 @@ if one names a file/flag/function, verify it still exists before relying on it.
 - Before saving, check for an existing file that covers it — update, don't duplicate.
 - Delete facts that turn out wrong.
 - Link related facts with `[[slug]]`; a link to a not-yet-written slug is fine.
+
+## Host
+- the host already keeps memory (Claude Code: the project memory folder it loads each
+  session; hako: `:memory`): use that place and its format, with the rules above
+- otherwise: `memory/` at the repo root for project facts, `~/.agents/memory/` for facts about
+  the user, and one line in the host's instruction file (`CLAUDE.md`, `AGENTS.md`) pointing at
+  `MEMORY.md` so it loads at session start
 
 ## Notes
 Pure markdown, no deps — works in any agent. Pairs with `handoff` (session-state)

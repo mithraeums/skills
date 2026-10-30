@@ -1,7 +1,7 @@
 ---
 name: corp
 description: >
-  A company in a folder — a referential multi-agent org for any AI coding assistant.
+  A company in a folder: a referential multi-agent org for any AI coding assistant.
   Loads CEO, DEV, DESIGN, QA, and ARCH agents from markdown on demand. Use when a task
   spans multiple domains, before building anything non-trivial, or to decide which
   agent handles a given task. Host-agnostic (Claude / Codex / Cursor / Gemini / hako / any).

@@ -2,7 +2,7 @@
 name: brief
 description: >
   Token-lean output mode. Cut response length ~50-75% while keeping every piece of
-  technical substance — drop filler, hedging, pleasantries, and restatement, not
+  technical substance: drop filler, hedging, pleasantries, and restatement, not
   information. Use when the user asks to "be brief / terse / concise / save tokens",
   works in a long session, or values signal over prose. Host-agnostic.
   Trigger: /brief, "be brief", "less tokens", "terse", "tl;dr mode".

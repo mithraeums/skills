@@ -4,7 +4,7 @@ description: >
   Write a START-HERE state doc so the next session (you, later, or a teammate) resumes
   in seconds instead of re-deriving everything. Use at session end, before a long pause,
   when context is about to compact, or when the user says "wrap up / save state / where
-  were we". Captures done / next / gotchas — not a transcript. Host-agnostic.
+  were we". Captures done / next / gotchas, not a transcript. Host-agnostic.
   Trigger: /handoff, "wrap up", "save state", "where were we", "hand off", "session notes".
 ---
 
@@ -23,7 +23,8 @@ next, and what will bite you.* Optimized for fast re-entry, not completeness.
 ## Where
 A durable file the next session loads first — e.g. `STATE.md` at repo root, or a
 `project` memory (see the `memory` skill). One file; keep it current by editing in
-place, not appending forever.
+place, not appending forever. Point the host's instruction file at it so it loads first:
+`CLAUDE.md` for Claude Code, `AGENTS.md` for Codex, OpenCode and Cursor (hako reads either).
 
 ## Structure
 ```markdown

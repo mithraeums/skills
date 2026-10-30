@@ -43,7 +43,9 @@ carries the weight: say when to use it, in the words a user would type.
 :use <skill-name>            # turn it on as a mode, then use it
 ```
 
-Or drop the folder into `~/.hako/skills/` (or `.claude/skills/` for Claude Code).
+Or from a checkout, for every agent on the machine: `sh install.sh <skill-name>`.
+If it should install as a Claude Code plugin too, add it to `.claude-plugin/marketplace.json`
+and run `claude plugin validate .`.
 
 ## Send it
 
@@ -52,7 +54,7 @@ git clone https://github.com/mithraeums/skills
 git checkout -b add/<skill-name>
 # add <skill-name>/SKILL.md (+ any other files)
 git push origin add/<skill-name>
-# open a PR; add a row to the catalog in README.md
+# open a PR; add a row to the catalog in README.md and an entry in .claude-plugin/marketplace.json
 ```
 
 License: GPL-3.0, like the rest of the repo.

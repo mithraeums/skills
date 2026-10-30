@@ -2,7 +2,7 @@
 name: changelog
 description: >
   Turn a diff or a session log into one clean CHANGELOG entry, in the project's own
-  style — grouped Added / Changed / Fixed / Removed, user-visible effect first, the
+  style: grouped Added / Changed / Fixed / Removed, user-visible effect first, the
   *why* kept when a change reverses or surprises. Single-repo and focused; use when
   the user says "write the changelog / what changed / log this", or after a batch of
   work that needs recording. Host-agnostic.

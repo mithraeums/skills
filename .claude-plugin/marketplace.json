@@ -1,0 +1,65 @@
+{
+  "name": "mithraeum",
+  "description": "mithraeum skills: plain markdown behaviors that work in any agent",
+  "owner": {
+    "name": "mithraeum",
+    "url": "https://github.com/mithraeums"
+  },
+  "plugins": [
+    {
+      "name": "brief",
+      "source": "./brief",
+      "description": "token-lean answers: cut length 50 to 75 percent, keep every fact"
+    },
+    {
+      "name": "changelog",
+      "source": "./changelog",
+      "description": "turn a diff or session into one clean CHANGELOG entry in the project's own voice"
+    },
+    {
+      "name": "corp",
+      "source": "./corp",
+      "description": "a company in a folder: CEO, DEV, DESIGN, QA and ARCH agents that route work by domain"
+    },
+    {
+      "name": "debug",
+      "source": "./debug",
+      "description": "evidence, repro, proof: find the real cause and pin the fix with a test that fails without it"
+    },
+    {
+      "name": "gitflow",
+      "source": "./gitflow",
+      "description": "a reviewed push flow: the agent prepares, you read it and push with y/N scripts"
+    },
+    {
+      "name": "handoff",
+      "source": "./handoff",
+      "description": "a START-HERE state doc so the next session resumes in seconds"
+    },
+    {
+      "name": "memory",
+      "source": "./memory",
+      "description": "durable cross-session memory: a MEMORY.md index and one fact per file"
+    },
+    {
+      "name": "release",
+      "source": "./release",
+      "description": "bump versions everywhere, write the changelog, plan the push order"
+    },
+    {
+      "name": "scope",
+      "source": "./scope",
+      "description": "turn a vague ask into a goal, non-goals and the smallest first step"
+    },
+    {
+      "name": "ship",
+      "source": "./ship",
+      "description": "the pre-push gate: builds, sanitizers, versions, changelog, docs; PASS or BLOCKED"
+    },
+    {
+      "name": "sync",
+      "source": "./sync",
+      "description": "change once, update everywhere: docs, versions, sibling repos, data files"
+    }
+  ]
+}
