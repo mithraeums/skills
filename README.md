@@ -12,10 +12,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-pre--1.0-e2402e?style=flat-square&labelColor=14130f" alt="pre-1.0"/>
-  <img src="https://img.shields.io/badge/license-GPL--3.0-2636c4?style=flat-square&labelColor=14130f" alt="GPL-3.0"/>
-  <img src="https://img.shields.io/badge/format-markdown-2636c4?style=flat-square&labelColor=14130f" alt="markdown"/>
-  <img src="https://img.shields.io/badge/runtime-none-2636c4?style=flat-square&labelColor=14130f" alt="no runtime"/>
+  <img src="https://img.shields.io/badge/version-pre--1.0-ece7da?style=flat-square&labelColor=14130f" alt="pre-1.0"/>
+  <img src="https://img.shields.io/badge/license-GPL--3.0-ece7da?style=flat-square&labelColor=14130f" alt="GPL-3.0"/>
+  <img src="https://img.shields.io/badge/format-markdown-ece7da?style=flat-square&labelColor=14130f" alt="markdown"/>
+  <img src="https://img.shields.io/badge/runtime-none-ece7da?style=flat-square&labelColor=14130f" alt="no runtime"/>
 </p>
 
 <p align="center">
